@@ -54,7 +54,9 @@ public class SecurityConfig {
                 "http://localhost:5174",
                 "http://localhost:3000",
                 "http://localhost:5175",
-                "https://cinemor.netlify.app"));
+                "https://cinemor.netlify.app",
+                "https://enchanting-lolly-200ee6.netlify.app",
+                "https://*.netlify.app"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 
         configuration.setAllowedHeaders(Arrays.asList("*"));
