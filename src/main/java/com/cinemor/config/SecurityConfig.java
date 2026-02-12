@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/register", "/api/auth/login", "/api/forgot-password", "/api/reset-password").permitAll()
                 .requestMatchers("/api/movies/**", "/api/menu/**").permitAll()
                 .requestMatchers("/h2-console/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/favicon.ico", "/favicon.png", "/robots.txt").permitAll()
                 .requestMatchers("/api/favorites/**", "/api/tickets/**").authenticated()
                 .requestMatchers("/error").permitAll()
                 .anyRequest().denyAll());

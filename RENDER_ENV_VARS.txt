@@ -1,0 +1,30 @@
+# Render Environment Variables Checklist
+# Render Dashboard → cinemor-api → Environment sekmesinde bu değişkenleri ekleyin:
+
+# Database (ÖNEMLİ - Render PostgreSQL kullanıyorsanız)
+SPRING_DATASOURCE_URL=jdbc:postgresql://[RENDER_POSTGRES_INTERNAL_HOST]:5432/cinemor-api
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=[YOUR_POSTGRES_PASSWORD]
+SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+
+# Server
+SERVER_PORT=8082
+SPRING_PROFILES_ACTIVE=production
+
+# JPA
+SPRING_JPA_HIBERNATE_DDL_AUTO=update
+SPRING_JPA_SHOW_SQL=false
+SPRING_SQL_INIT_MODE=always
+
+# Application
+SPRING_APPLICATION_NAME=CinemoR
+APP_FRONTEND_URL=https://enchanting-lolly-200ee6.netlify.app
+APP_JWT_SECRET=daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
+APP_JWT_EXPIRATION_MILLISECONDS=604800000
+
+# Mail (Optional)
+APP_MAIL_ENABLED=false
+
+# NOT: Render PostgreSQL kullanıyorsanız, Render Dashboard'dan PostgreSQL servisinin
+# "Internal Database URL" değerini kopyalayıp SPRING_DATASOURCE_URL'e yapıştırın.
+# Format: jdbc:postgresql://[host]:5432/[database]
