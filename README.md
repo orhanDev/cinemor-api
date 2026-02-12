@@ -1,6 +1,6 @@
 # CinemoR API
 
-CinemoR – Cinema Ticket Booking System Backend API
+CinemoR – Kinoticket-Buchungssystem Backend API
 
 ## Technologies
 
