@@ -89,38 +89,53 @@ public class MenuController {
     
     private Double getDefaultPrice(String name) {
         String lowerName = name.toLowerCase();
+        // Menü fiyatları
         if (lowerName.contains("extra") && lowerName.contains("groß")) return 18.50;
         if (lowerName.contains("extra")) return 15.90;
-        if (lowerName.contains("groß")) return 14.50;
+        if (lowerName.contains("groß") || lowerName.contains("goß")) return 14.50;
         if (lowerName.contains("kinder")) return 9.90;
         if (lowerName.contains("rio") || lowerName.contains("santo")) return 16.90;
-        return 12.90;
+        // İçecek fiyatları
+        if (lowerName.contains("coca") || lowerName.contains("cola")) return 4.50;
+        if (lowerName.contains("fanta")) return 4.50;
+        if (lowerName.contains("fruchtsaft")) return 4.90;
+        if (lowerName.contains("ice") && lowerName.contains("tea")) return 4.50;
+        if (lowerName.contains("wasser")) return 3.50;
+        return 4.50; // Varsayılan içecek fiyatı
     }
     
     private String getDefaultDescription(String name) {
         String lowerName = name.toLowerCase();
+        // Menü açıklamaları
         if (lowerName.contains("kinder")) return "Kinderfreundliches Menü";
         if (lowerName.contains("rio") || lowerName.contains("santo")) return "Rio Santo Spezial Menü";
         if (lowerName.contains("extra") && lowerName.contains("groß")) return "Extra großes Menü mit Getränk";
         if (lowerName.contains("extra")) return "Extra Menü mit Getränk";
-        if (lowerName.contains("groß")) return "Großes Menü mit Getränk";
-        return "Menü mit Getränk";
+        if (lowerName.contains("groß") || lowerName.contains("goß")) return "Großes Menü mit Getränk";
+        // İçecek açıklamaları
+        if (lowerName.contains("coca") || lowerName.contains("cola")) return "Erfrischendes Cola-Getränk";
+        if (lowerName.contains("fanta")) return "Erfrischendes Orangen-Getränk";
+        if (lowerName.contains("fruchtsaft")) return "Natürlicher Fruchtsaft";
+        if (lowerName.contains("ice") && lowerName.contains("tea")) return "Erfrischender Eistee";
+        if (lowerName.contains("wasser")) return "Erfrischendes Mineralwasser";
+        return "Getränk"; // Varsayılan içecek açıklaması
     }
     
     private List<Map<String, Object>> getDefaultMenuItems() {
         List<Map<String, Object>> defaultItems = new ArrayList<>();
         
+        // Menüler
         String[] defaultMenus = {
             "extra_großes_menu.png", "extra_menu.png", "goßes_menu.png", 
             "kinder_menu.png", "rio_santo_menu.png"
         };
         
-        double[] prices = {18.50, 15.90, 14.50, 9.90, 16.90};
-        String[] names = {
+        double[] menuPrices = {18.50, 15.90, 14.50, 9.90, 16.90};
+        String[] menuNames = {
             "Extra Großes Menu", "Extra Menu", "Großes Menu", 
             "Kinder Menu", "Rio Santo Menu"
         };
-        String[] descriptions = {
+        String[] menuDescriptions = {
             "Extra großes Menü mit Getränk", "Extra Menü mit Getränk", 
             "Großes Menü mit Getränk", "Kinderfreundliches Menü", 
             "Rio Santo Spezial Menü"
@@ -132,10 +147,41 @@ public class MenuController {
             String nameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.'));
             
             item.put("id", nameWithoutExt.toLowerCase().replaceAll("[^a-z0-9]", "-"));
-            item.put("name", names[i]);
+            item.put("name", menuNames[i]);
             item.put("image", "/images/menu/" + fileName);
-            item.put("price", prices[i]);
-            item.put("description", descriptions[i]);
+            item.put("price", menuPrices[i]);
+            item.put("description", menuDescriptions[i]);
+            
+            defaultItems.add(item);
+        }
+        
+        // İçecekler
+        String[] defaultDrinks = {
+            "Coca_cola.png", "Fanta.png", "Fruchtsaft.png", 
+            "Ice_Tea.png", "Wasser.png"
+        };
+        
+        double[] drinkPrices = {4.50, 4.50, 4.90, 4.50, 3.50};
+        String[] drinkNames = {
+            "Coca Cola", "Fanta", "Fruchtsaft", 
+            "Ice Tea", "Wasser"
+        };
+        String[] drinkDescriptions = {
+            "Erfrischendes Cola-Getränk", "Erfrischendes Orangen-Getränk", 
+            "Natürlicher Fruchtsaft", "Erfrischender Eistee", 
+            "Erfrischendes Mineralwasser"
+        };
+        
+        for (int i = 0; i < defaultDrinks.length; i++) {
+            Map<String, Object> item = new HashMap<>();
+            String fileName = defaultDrinks[i];
+            String nameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.'));
+            
+            item.put("id", nameWithoutExt.toLowerCase().replaceAll("[^a-z0-9]", "-"));
+            item.put("name", drinkNames[i]);
+            item.put("image", "/images/menu/" + fileName);
+            item.put("price", drinkPrices[i]);
+            item.put("description", drinkDescriptions[i]);
             
             defaultItems.add(item);
         }
