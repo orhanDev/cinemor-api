@@ -9,10 +9,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Provides a no-op {@link JavaMailSender} when mail is not configured (e.g. on Render free tier).
- * When {@code spring.mail.host} is set, Spring Boot creates the real bean and this one is not used.
- */
 @Configuration
 public class MailConfig {
 
@@ -37,22 +33,18 @@ public class MailConfig {
 
         @Override
         public void send(jakarta.mail.internet.MimeMessage mimeMessage) {
-            // no-op when mail is not configured
         }
 
         @Override
         public void send(jakarta.mail.internet.MimeMessage... mimeMessages) {
-            // no-op
         }
 
         @Override
         public void send(org.springframework.mail.SimpleMailMessage simpleMessage) {
-            // no-op
         }
 
         @Override
         public void send(org.springframework.mail.SimpleMailMessage... simpleMessages) {
-            // no-op
         }
     }
 }

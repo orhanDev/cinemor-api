@@ -1,9 +1,3 @@
--- Seed data for movies table from movies-data.json
--- This file will be executed on startup if spring.sql.init.mode=always
-
--- Clear existing data (optional - remove if you want to keep existing data)
--- DELETE FROM movies;
-
 INSERT INTO movies (id, title, original_title, genre, duration, director, movie_cast, description, year, country, release_date, fsk, poster_path, slider_path, ticket_path, is_coming_soon, created_at, updated_at)
 VALUES 
 (1, 'AB DURCH DIE MITTE', 'Le Million', 'Komödie', '98 Minuten', '', 'Christian Clavier, Rayane Bensetti, Gilles Cohen', 'Eine überraschende Geldsumme bringt das Leben mehrerer Menschen durcheinander. Ab durch die Mitte ist eine turbulente Komödie voller Missverständnisse, Tempo und Situationshumor.', '2025', 'Frankreich', '01.01.2025', 'ab 6 Jahren', '/images/movies/nowshowing/ab_durch_die_mitte.jpg', '/images/movies/nowshowing/ab_durch_die_mitte-slider.png', '/images/tickets/nowshowing/ab_durch_die_mitte-ticket.jpg', false, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -43,5 +37,4 @@ ON CONFLICT (id) DO UPDATE SET
     is_coming_soon = EXCLUDED.is_coming_soon,
     updated_at = CURRENT_TIMESTAMP;
 
--- Update sequence to continue from the highest ID
 SELECT setval('movies_id_seq', (SELECT MAX(id) FROM movies));

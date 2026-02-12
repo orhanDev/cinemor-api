@@ -89,42 +89,37 @@ public class MenuController {
     
     private Double getDefaultPrice(String name) {
         String lowerName = name.toLowerCase();
-        // Menü fiyatları
         if (lowerName.contains("extra") && lowerName.contains("groß")) return 18.50;
         if (lowerName.contains("extra")) return 15.90;
         if (lowerName.contains("groß") || lowerName.contains("goß")) return 14.50;
         if (lowerName.contains("kinder")) return 9.90;
         if (lowerName.contains("rio") || lowerName.contains("santo")) return 16.90;
-        // İçecek fiyatları
         if (lowerName.contains("coca") || lowerName.contains("cola")) return 4.50;
         if (lowerName.contains("fanta")) return 4.50;
         if (lowerName.contains("fruchtsaft")) return 4.90;
         if (lowerName.contains("ice") && lowerName.contains("tea")) return 4.50;
         if (lowerName.contains("wasser")) return 3.50;
-        return 4.50; // Varsayılan içecek fiyatı
+        return 4.50;
     }
     
     private String getDefaultDescription(String name) {
         String lowerName = name.toLowerCase();
-        // Menü açıklamaları
         if (lowerName.contains("kinder")) return "Kinderfreundliches Menü";
         if (lowerName.contains("rio") || lowerName.contains("santo")) return "Rio Santo Spezial Menü";
         if (lowerName.contains("extra") && lowerName.contains("groß")) return "Extra großes Menü mit Getränk";
         if (lowerName.contains("extra")) return "Extra Menü mit Getränk";
         if (lowerName.contains("groß") || lowerName.contains("goß")) return "Großes Menü mit Getränk";
-        // İçecek açıklamaları
         if (lowerName.contains("coca") || lowerName.contains("cola")) return "Erfrischendes Cola-Getränk";
         if (lowerName.contains("fanta")) return "Erfrischendes Orangen-Getränk";
         if (lowerName.contains("fruchtsaft")) return "Natürlicher Fruchtsaft";
         if (lowerName.contains("ice") && lowerName.contains("tea")) return "Erfrischender Eistee";
         if (lowerName.contains("wasser")) return "Erfrischendes Mineralwasser";
-        return "Getränk"; // Varsayılan içecek açıklaması
+        return "Getränk";
     }
     
     private List<Map<String, Object>> getDefaultMenuItems() {
         List<Map<String, Object>> defaultItems = new ArrayList<>();
         
-        // Menüler
         String[] defaultMenus = {
             "extra_großes_menu.png", "extra_menu.png", "goßes_menu.png", 
             "kinder_menu.png", "rio_santo_menu.png"
@@ -155,7 +150,6 @@ public class MenuController {
             defaultItems.add(item);
         }
         
-        // İçecekler
         String[] defaultDrinks = {
             "Coca_cola.png", "Fanta.png", "Fruchtsaft.png", 
             "Ice_Tea.png", "Wasser.png"
