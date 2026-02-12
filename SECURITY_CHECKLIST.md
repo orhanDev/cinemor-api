@@ -6,9 +6,9 @@
 2. ✅ `.gitignore` dosyasına `application.properties` eklendi
 3. ✅ Git geçmişi temizlendi (tüm commit'lerden hassas bilgiler kaldırıldı)
 4. ✅ Şifreler güncellendi:
-   - Veritabanı şifresi: `Vekil402300..`
-   - Admin şifresi: `Vekil402300..`
-   - User şifresi: `Vekil402300..`
+   - Veritabanı şifresi: `Vekil402300.`
+   - Admin şifresi: `Vekil402300.`
+   - User şifresi: `Vekil402300.`
    - JWT Secret: `b28b93f654e2afcb49d792ef1655af3e4f416b5e8d5700fd868670f60087493b`
 
 ## ⚠️ Yapılması Gerekenler
@@ -21,7 +21,7 @@ Render Dashboard → `cinemor-api` → Environment → Environment Variables bö
 # Database (Render PostgreSQL'den otomatik gelir, kontrol edin)
 SPRING_DATASOURCE_URL=jdbc:postgresql://your-render-postgres-host:5432/cinemor-api
 SPRING_DATASOURCE_USERNAME=your-postgres-username
-SPRING_DATASOURCE_PASSWORD=Vekil402300..
+SPRING_DATASOURCE_PASSWORD=Vekil402300.
 
 # Server
 SERVER_PORT=8082

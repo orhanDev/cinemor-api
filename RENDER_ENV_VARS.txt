@@ -4,7 +4,7 @@
 # Database Configuration
 SPRING_DATASOURCE_URL=jdbc:postgresql://your-render-postgres-host:5432/cinemor-api
 SPRING_DATASOURCE_USERNAME=your-postgres-username
-SPRING_DATASOURCE_PASSWORD=Vekil402300..
+SPRING_DATASOURCE_PASSWORD=Vekil402300.
 
 # Server Configuration
 SERVER_PORT=8082
@@ -28,12 +28,12 @@ APP_MAIL_ENABLED=false
 
 # Admin Default Credentials (will be created on first startup)
 ADMIN_EMAIL=orhancodes@gmail.com
-ADMIN_PASSWORD=Vekil402300..
+ADMIN_PASSWORD=Vekil402300.
 ADMIN_PHONENUMBER=(111) 111-1111
 
 # User Default Credentials (will be created on first startup)
 USER_EMAIL=orhancodes@gmail.com
-USER_PASSWORD=Vekil402300..
+USER_PASSWORD=Vekil402300.
 USER_PHONENUMBER=(111) 111-1111
 
 # Cloudinary (if using image upload)
