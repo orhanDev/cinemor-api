@@ -49,16 +49,21 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
+        
+        // Localhost origins
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
                 "http://localhost:5174",
                 "http://localhost:3000",
-                "http://localhost:5175",
+                "http://localhost:5175"));
+        
+        // Netlify subdomains using pattern (supports wildcards)
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "https://*.netlify.app",
                 "https://cinemor.netlify.app",
-                "https://enchanting-lolly-200ee6.netlify.app",
-                "https://*.netlify.app"));
+                "https://enchanting-lolly-200ee6.netlify.app"));
+        
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
