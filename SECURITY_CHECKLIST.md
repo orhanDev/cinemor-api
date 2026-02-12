@@ -45,12 +45,12 @@ APP_MAIL_ENABLED=false
 
 # Admin (opsiyonel - ilk başlangıçta oluşturulur)
 ADMIN_EMAIL=orhancodes@gmail.com
-ADMIN_PASSWORD=Vekil402300..
+ADMIN_PASSWORD=Vekil402300.
 ADMIN_PHONENUMBER=(111) 111-1111
 
 # User (opsiyonel - ilk başlangıçta oluşturulur)
 USER_EMAIL=orhancodes@gmail.com
-USER_PASSWORD=Vekil402300..
+USER_PASSWORD=Vekil402300.
 USER_PHONENUMBER=(111) 111-1111
 ```
 
@@ -58,12 +58,12 @@ USER_PHONENUMBER=(111) 111-1111
 
 **Yerel PostgreSQL:**
 ```sql
-ALTER USER postgres WITH PASSWORD 'Vekil402300..';
+ALTER USER postgres WITH PASSWORD 'Vekil402300.';
 ```
 
 **Render PostgreSQL:**
 - Render Dashboard → PostgreSQL → Settings → Reset Password
-- Yeni şifre: `Vekil402300..`
+- Yeni şifre: `Vekil402300.`
 - Environment variable'ı güncelleyin
 
 ### 3. Admin ve User Şifrelerini Veritabanında Güncelleyin
