@@ -13,23 +13,14 @@ import java.util.List;
 public class FavoriteService {
 
     private final FavoriteRepository favoriteRepository;
-    private final MovieRepository movieRepository;
 
     public FavoriteService(FavoriteRepository favoriteRepository, MovieRepository movieRepository) {
         this.favoriteRepository = favoriteRepository;
-        this.movieRepository = movieRepository;
+        public FavoriteService(FavoriteRepository favoriteRepository) {
+            this.favoriteRepository = favoriteRepository;
     }
 
-    public List<Movie> getFavorites(Long userId) {
-        List<Favorite> favs = favoriteRepository.findByUserIdOrderByCreatedAtDesc(userId);
-        List<Long> movieIds = favs.stream().map(Favorite::getMovieId).distinct().toList();
-        if (movieIds.isEmpty()) return List.of();
-        List<Movie> movies = movieRepository.findAllById(movieIds);
-        return favs.stream()
-            .map(f -> movies.stream().filter(m -> m.getId().equals(f.getMovieId())).findFirst().orElse(null))
-            .filter(m -> m != null)
-            .toList();
-    }
+        // Movie entity kaldırıldığı için getFavorites metodu kaldırıldı.
 
     public List<Long> getFavoriteMovieIds(Long userId) {
         return favoriteRepository.findByUserIdOrderByCreatedAtDesc(userId)
@@ -42,7 +33,7 @@ public class FavoriteService {
     public boolean add(Long userId, Long movieId) {
         if (movieId == null) return false;
         if (favoriteRepository.existsByUserIdAndMovieId(userId, movieId)) return true;
-        if (movieRepository.findById(movieId).isEmpty()) return false;
+            // Movie entity kaldırıldığı için film kontrolü yapılmıyor.
         Favorite f = new Favorite();
         f.setUserId(userId);
         f.setMovieId(movieId);

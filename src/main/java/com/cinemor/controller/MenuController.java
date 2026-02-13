@@ -12,6 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cinemor.entity.MenuOrder;
+import com.cinemor.service.MenuOrderService;
+import com.cinemor.service.TokenStore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/menu")
 @CrossOrigin(origins = "*")
@@ -181,5 +188,41 @@ public class MenuController {
         }
         
         return defaultItems;
+    }
+
+    private final MenuOrderService menuOrderService;
+    private final TokenStore tokenStore;
+
+    @Autowired
+    public MenuController(MenuOrderService menuOrderService, TokenStore tokenStore) {
+        this.menuOrderService = menuOrderService;
+        this.tokenStore = tokenStore;
+    }
+
+    private Long getUserIdFromRequest(HttpServletRequest request) {
+        String auth = request.getHeader("Authorization");
+        if (auth == null || !auth.startsWith("Bearer ")) return null;
+        String token = auth.substring(7).trim();
+        return tokenStore.getUserId(token);
+    }
+
+    @PostMapping("/order")
+    public ResponseEntity<MenuOrder> placeOrder(@RequestBody MenuOrder order, HttpServletRequest request) {
+        Long userId = getUserIdFromRequest(request);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        order.setUserId(userId);
+        MenuOrder saved = menuOrderService.saveOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    }
+
+    @GetMapping("/orders/me")
+    public ResponseEntity<List<MenuOrder>> getMyOrders(HttpServletRequest request) {
+        Long userId = getUserIdFromRequest(request);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(menuOrderService.getOrdersByUserId(userId));
     }
 }
