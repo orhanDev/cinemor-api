@@ -19,9 +19,17 @@ public class FavoriteController {
     private final FavoriteService favoriteService;
     private final TokenStore tokenStore;
 
+    public FavoriteController(FavoriteService favoriteService, TokenStore tokenStore) {
         this.favoriteService = favoriteService;
         this.tokenStore = tokenStore;
-    // Movie entity kaldırıldığı için getFavorites endpointi kaldırıldı.
+    }
+
+    private Long getUserIdFromRequest(HttpServletRequest request) {
+        String auth = request.getHeader("Authorization");
+        if (auth != null && auth.startsWith("Bearer ")) {
+            return tokenStore.getUserId(auth.substring(7).trim());
+        }
+        return null;
     }
 
     @GetMapping("/auth")

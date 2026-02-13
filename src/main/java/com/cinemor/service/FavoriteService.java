@@ -13,14 +13,18 @@ import java.util.List;
 public class FavoriteService {
 
     private final FavoriteRepository favoriteRepository;
+    private final MovieRepository movieRepository;
 
     public FavoriteService(FavoriteRepository favoriteRepository, MovieRepository movieRepository) {
         this.favoriteRepository = favoriteRepository;
-        public FavoriteService(FavoriteRepository favoriteRepository) {
-            this.favoriteRepository = favoriteRepository;
+        this.movieRepository = movieRepository;
     }
 
-        // Movie entity kaldırıldığı için getFavorites metodu kaldırıldı.
+    public List<Movie> getFavorites(Long userId) {
+        List<Long> ids = getFavoriteMovieIds(userId);
+        if (ids.isEmpty()) return List.of();
+        return movieRepository.findAllById(ids);
+    }
 
     public List<Long> getFavoriteMovieIds(Long userId) {
         return favoriteRepository.findByUserIdOrderByCreatedAtDesc(userId)
