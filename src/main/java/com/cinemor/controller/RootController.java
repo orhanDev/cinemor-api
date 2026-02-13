@@ -16,23 +16,17 @@ public class RootController {
 
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> root() {
-        long movieCount = movieRepository.count();
         return ResponseEntity.ok(Map.of(
                 "service", "CinemoR API",
-                "movies", "/api/movies",
-                "health", "ok",
-                "movieCount", movieCount
+                "health", "ok"
         ));
     }
 
     @GetMapping("/api")
     public ResponseEntity<Map<String, Object>> api() {
-        long movieCount = movieRepository.count();
         return ResponseEntity.ok(Map.of(
                 "service", "CinemoR API",
-                "movies", "/api/movies",
-                "health", "ok",
-                "movieCount", movieCount
+                "health", "ok"
         ));
     }
 }
