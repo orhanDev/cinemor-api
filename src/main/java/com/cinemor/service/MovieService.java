@@ -46,15 +46,6 @@ public class MovieService {
             existing.setCountry(movie.getCountry());
             existing.setReleaseDate(movie.getReleaseDate());
             existing.setFsk(movie.getFsk());
-            if (movie.getPosterPath() != null && !movie.getPosterPath().isBlank()) {
-                existing.setPosterPath(movie.getPosterPath());
-            }
-            if (movie.getSliderPath() != null && !movie.getSliderPath().isBlank()) {
-                existing.setSliderPath(movie.getSliderPath());
-            }
-            if (movie.getTicketPath() != null && !movie.getTicketPath().isBlank()) {
-                existing.setTicketPath(movie.getTicketPath());
-            }
             existing.setIsComingSoon(movie.getIsComingSoon());
             return movieRepository.save(existing);
         }

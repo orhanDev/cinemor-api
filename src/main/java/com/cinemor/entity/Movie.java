@@ -52,15 +52,6 @@ public class Movie {
     @Column(length = 50)
     private String fsk;
     
-    @Column(name = "poster_path", length = 500)
-    private String posterPath;
-
-    @Column(name = "slider_path", length = 500)
-    private String sliderPath;
-
-    @Column(name = "ticket_path", length = 500)
-    private String ticketPath;
-    
     @Column(name = "is_coming_soon")
     private Boolean isComingSoon = true;
     
