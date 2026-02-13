@@ -17,6 +17,7 @@ import com.cinemor.service.MenuOrderService;
 import com.cinemor.service.TokenStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/menu")
