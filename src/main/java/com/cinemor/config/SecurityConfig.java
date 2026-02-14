@@ -37,7 +37,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/api").permitAll()
                 .requestMatchers("/api/register", "/api/auth/login", "/api/forgot-password", "/api/reset-password").permitAll()
-                .requestMatchers("/api/movies/**", "/api/menu/**").permitAll()
+                .requestMatchers("/api/movies/**", "/api/menu/**", "/api/showtime/**").permitAll()
                 .requestMatchers("/h2-console/**", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/favicon.ico", "/favicon.png", "/robots.txt").permitAll()
                 .requestMatchers("/api/favorites/**", "/api/tickets/**").authenticated()
