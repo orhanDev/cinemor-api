@@ -45,5 +45,7 @@ application-dev.properties
 # Spring Boot
 application-*.properties
 !application.properties.example
-# DO NOT COMMIT REAL CREDENTIALS
 application.properties
+
+.cursor
+.cursorrules

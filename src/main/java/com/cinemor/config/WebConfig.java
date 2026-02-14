@@ -14,11 +14,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        // Ensure UTF-8 encoding for all HTTP responses
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(StandardCharsets.UTF_8);
         converters.add(stringConverter);
         
-        // Ensure UTF-8 for JSON responses
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         jsonConverter.setDefaultCharset(StandardCharsets.UTF_8);
         converters.add(jsonConverter);

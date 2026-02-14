@@ -37,7 +37,6 @@ public class FavoriteService {
     public boolean add(Long userId, Long movieId) {
         if (movieId == null) return false;
         if (favoriteRepository.existsByUserIdAndMovieId(userId, movieId)) return true;
-            // Movie entity kaldırıldığı için film kontrolü yapılmıyor.
         Favorite f = new Favorite();
         f.setUserId(userId);
         f.setMovieId(movieId);

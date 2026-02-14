@@ -1,6 +1,5 @@
 spring.application.name=CinemoR
 server.port=8082
-# PostgreSQL (Treiber in pom nötig, sonst wird H2 verwendet)
 spring.datasource.url=jdbc:postgresql://localhost:5432/cinemor-api
 spring.datasource.driver-class-name=org.postgresql.Driver
 spring.datasource.username=postgres
@@ -19,19 +18,15 @@ logging.level.org.springframework.security=DEBUG
 springdoc.swagger-ui.path=/swagger-ui.html
 springdoc.swagger-ui.operationsSorter=alpha
 springdoc.pathsToMatch=/api/**
-# Frontend URL für E-Mails (z.B. Reset-Link)
 app.frontend-url=http://localhost:5173
 app.jwt-secret=GENERATE_A_LONG_RANDOM_SECRET_HERE
 app.jwt-expiration-milliseconds=604800000
-# E-Mail (Passwort-Reset): Gmail App-Passwort erforderlich!
-# Wenn gesetzt: E-Mail wird gesendet. Sonst: Link nur in log/cinemorapp.log
 spring.mail.host=smtp.gmail.com
 spring.mail.port=587
 spring.mail.username=your-email@gmail.com
 spring.mail.password=your-app-password-here
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
-# true = E-Mail senden | false = nur Link in Log schreiben (ohne Gmail)
 app.mail-enabled=false
 file.upload-dir=uploads
 Admin.Email=admin@example.com
