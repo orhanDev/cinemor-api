@@ -25,6 +25,7 @@ public class FavoriteController {
     }
 
     private Long getUserIdFromRequest(HttpServletRequest request) {
+
         String auth = request.getHeader("Authorization");
 
         if (auth != null && auth.startsWith("Bearer ")) {
@@ -90,4 +91,12 @@ public class FavoriteController {
 
         Long userId = getUserIdFromRequest(request);
 
-        if (userId ==
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        favoriteService.remove(userId, movieId);
+
+        return ResponseEntity.noContent().build();
+    }
+}
