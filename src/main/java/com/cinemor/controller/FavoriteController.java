@@ -19,9 +19,17 @@ public class FavoriteController {
     private final FavoriteService favoriteService;
     private final TokenStore tokenStore;
 
+    public FavoriteController(FavoriteService favoriteService, TokenStore tokenStore) {
         this.favoriteService = favoriteService;
         this.tokenStore = tokenStore;
-    // Movie entity kaldırıldığı için getFavorites endpointi kaldırıldı.
+    }
+
+    private Long getUserIdFromRequest(HttpServletRequest request) {
+        String auth = request.getHeader("Authorization");
+        if (auth != null && auth.startsWith("Bearer ")) {
+            return tokenStore.getUserId(auth.substring(7).trim());
+        }
+        return null;
     }
 
     @GetMapping("/auth")
@@ -48,20 +56,31 @@ public class FavoriteController {
         if (userId == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+
         if (body == null || body.getMovieId() == null) {
             return ResponseEntity.badRequest().body(Map.of("error", "movieId required"));
         }
+
         boolean added = favoriteService.add(userId, body.getMovieId());
-        return added ? ResponseEntity.status(HttpStatus.CREATED).build() : ResponseEntity.notFound().build();
+
+        if (added) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{movieId}")
     public ResponseEntity<Void> removeFavorite(@PathVariable Long movieId, HttpServletRequest request) {
         Long userId = getUserIdFromRequest(request);
+
         if (userId == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+
         favoriteService.remove(userId, movieId);
+
         return ResponseEntity.noContent().build();
     }
+
 }
