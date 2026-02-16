@@ -1,7 +1,6 @@
 package com.cinemor.controller;
 
 import com.cinemor.dto.AddFavoriteRequest;
-import com.cinemor.entity.Movie;
 import com.cinemor.service.FavoriteService;
 import com.cinemor.service.TokenStore;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,18 +32,6 @@ public class FavoriteController {
         }
 
         return null;
-    }
-
-    @GetMapping("/auth")
-    public ResponseEntity<List<Movie>> getFavorites(HttpServletRequest request) {
-
-        Long userId = getUserIdFromRequest(request);
-
-        if (userId == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-
-        return ResponseEntity.ok(favoriteService.getFavorites(userId));
     }
 
     @GetMapping("/auth/ids")
