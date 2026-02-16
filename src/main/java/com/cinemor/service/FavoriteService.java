@@ -1,9 +1,7 @@
 package com.cinemor.service;
 
 import com.cinemor.entity.Favorite;
-import com.cinemor.entity.Movie;
 import com.cinemor.repository.FavoriteRepository;
-import com.cinemor.repository.MovieRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,30 +12,31 @@ public class FavoriteService {
 
     private final FavoriteRepository favoriteRepository;
 
-    public FavoriteService(FavoriteRepository favoriteRepository, MovieRepository movieRepository) {
+    public FavoriteService(FavoriteRepository favoriteRepository) {
         this.favoriteRepository = favoriteRepository;
-        public FavoriteService(FavoriteRepository favoriteRepository) {
-            this.favoriteRepository = favoriteRepository;
     }
-
-        // Movie entity kaldırıldığı için getFavorites metodu kaldırıldı.
 
     public List<Long> getFavoriteMovieIds(Long userId) {
         return favoriteRepository.findByUserIdOrderByCreatedAtDesc(userId)
-            .stream()
-            .map(Favorite::getMovieId)
-            .toList();
+                .stream()
+                .map(Favorite::getMovieId)
+                .toList();
     }
 
     @Transactional
     public boolean add(Long userId, Long movieId) {
+
         if (movieId == null) return false;
-        if (favoriteRepository.existsByUserIdAndMovieId(userId, movieId)) return true;
-            // Movie entity kaldırıldığı için film kontrolü yapılmıyor.
+
+        if (favoriteRepository.existsByUserIdAndMovieId(userId, movieId))
+            return true;
+
         Favorite f = new Favorite();
         f.setUserId(userId);
         f.setMovieId(movieId);
+
         favoriteRepository.save(f);
+
         return true;
     }
 
@@ -47,6 +46,8 @@ public class FavoriteService {
     }
 
     public boolean isFavorite(Long userId, Long movieId) {
-        return userId != null && movieId != null && favoriteRepository.existsByUserIdAndMovieId(userId, movieId);
+        return userId != null &&
+               movieId != null &&
+               favoriteRepository.existsByUserIdAndMovieId(userId, movieId);
     }
 }
